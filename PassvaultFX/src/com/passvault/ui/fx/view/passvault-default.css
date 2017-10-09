@@ -1,0 +1,328 @@
+
+/* hide scroll-bar */
+.list-view .scroll-bar:vertical .increment-arrow,
+.list-view .scroll-bar:vertical .decrement-arrow,
+.list-view .scroll-bar:vertical .increment-button,
+.list-view .scroll-bar:vertical .decrement-button {
+    -fx-padding:0;
+}
+
+/* hide the account details divider */
+.split-pane-divider {
+   -fx-background-color: transparent;
+   -fx-padding: 0 ;
+}
+
+.list-view .cell.indexed-cell.list-cell {
+	-fx-background-color: rgb(242,242,242);
+	/*-fx-background-insets: .3;*/
+	-fx-alignment: center;
+	-fx-font-family: arial;
+	-fx-font-size: 15.0px ;
+}
+
+.list-view {
+	/*-fx-background-insets: -8 ;*/
+	-fx-background-color: rgb(242,242,242);
+	
+}
+
+/*.list-view:focused {
+	-fx-background-color: lightgray;
+	
+}*/
+
+.list-view .cell:filled.indexed-cell.list-cell:hover {
+	-fx-font-weight: 900;
+	-fx-background-color: darkgray;
+	-fx-text-fill: black;
+}
+
+.list-view .cell.indexed-cell.list-cell:focused {
+	-fx-font-weight: 900;
+	-fx-background-color: darkgray;
+}
+
+
+.menu-bar > .container > .menu-button:hover,
+.menu-bar > .container > .menu-button:focused,
+.menu-bar > .container > .menu-button:showing {
+    -fx-background-color: lightgray ;
+}
+
+.menu-bar > .container > .menu-button:hover > .label,
+.menu-bar > .container > .menu-button:focused > .label,
+.menu-bar > .container > .menu-button:showing  > .label {
+    -fx-text-fill: black ;
+}
+
+.menu-item:focused {
+     -fx-background-color: lightgray;
+     -fx-text-fill: black;
+}
+
+
+.button:hover, #toolbar-sortMenuButton:hover {
+    -fx-background-color: rgb(204,204,204) ;
+}
+
+.button:disabled, .button:default:disabled {
+    -fx-opacity: 0.1;
+    
+}
+
+.button:focused, #toolbar-sortMenuButton:focused {
+    -fx-border-color: darkgray;
+    -fx-background-color: rgb(219,219,219);
+    -fx-border-width: 2;
+    -fx-border-style: solid;
+    -fx-border-radius: 2, 2;
+    -fx-border-insets: -2;
+}
+
+.button:pressed, .button:default:hover:pressed, #toolbar-sortMenuButton:pressed {
+  -fx-background-color: darkgray ;
+  -fx-border-color: black ;
+  -fx-border-width: 1;
+  -fx-border-style: solid;
+  -fx-border-radius: 2, 2;
+  -fx-font-weight: bolder;
+  -fx-border-insets: -1;
+}
+
+
+/* 
+#anchor-pane {
+	-fx-border-width: 0.0;
+	-fx-background-insets: 0;
+	-fx-background-color: rgb(242,242,242);
+	-fx-border-color: rgb(242,242,242);
+	-fx-border-image-insets: 0;
+}
+*/
+
+.BorderPane {
+	-fx-border-width: 1 4 4 4;
+	-fx-border-color: darkgray;
+	-fx-background-color: rgb(242,244,244);
+}
+
+/* 
+.dialog-pane {
+	-fx-border-width: 1 4 4 4;
+	-fx-border-color: darkgray;
+	-fx-background-color: rgb(242,244,244);
+}
+*/
+
+
+.TopToolBar {
+	-fx-border-width: 1 0 0 0;
+	-fx-border-color: darkgray ;
+}
+
+.BottomToolBar {
+	-fx-border-width: 1 0 0 0;
+	-fx-border-color: darkgray ;
+}
+
+
+.account-windows {
+	-fx-background-size: 350 350;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-color: rgb(242,244,244);
+    -fx-background-image: url("../../../../../../resources/images/vault-15-opacity.png");
+}
+
+.settings-windows {
+	-fx-background-size: 300 300;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-color: rgb(242,244,244);
+    -fx-background-image: url("../../../../../../resources/images/vault-15-opacity.png");
+}
+
+
+.text-field {
+	-fx-highlight-fill: gray;
+	-fx-highlight-text-fill: white;
+}
+
+.text-field:focused {
+	-fx-border-color: black;
+	-fx-background-color: white;
+	-fx-border-insets: -1 -1 -1 -1, 0;
+    -fx-border-width: 1;
+    -fx-border-style: solid;
+    -fx-border-radius: 2, 2;
+}
+
+
+.text-area {
+	-fx-highlight-fill: gray;
+	-fx-highlight-text-fill: white;
+}
+
+.text-area:focused {
+	-fx-border-color: black;
+	-fx-background-color: white;
+	-fx-border-insets: -1 -1 -1 -1, 0;
+    -fx-border-width: 1;
+    -fx-border-style: none ;
+    -fx-border-radius: 2, 2;
+}
+
+.text-area .content {
+    
+    -fx-cursor: text;
+    -fx-background-color: white;
+    -fx-background-radius: 2, 2;
+}
+
+
+.choice-box:focused {
+	-fx-border-insets: -1 -1 -1 -1, 0;
+    -fx-border-color: black ;
+    -fx-background-color: rgb(219,219,219);
+    -fx-border-radius: 2, 2;
+}
+
+ 
+.check-box:focused  > .box {
+    -fx-border-insets: -1 -1 -1 -1, 0;
+    -fx-border-color: black ;
+    -fx-background-color: rgb(219,219,219);
+    -fx-border-radius: 2, 2;
+}
+
+.tab-pane:focused > .tab-header-area > .headers-region > .tab:selected .focus-indicator {
+    -fx-border-width: 1, 1;
+    -fx-border-color: #000000, #c1bdbd;
+    -fx-border-insets: -4 -4 -6 -5, -2 -2 -5 -3;
+    -fx-border-radius: 2, 1; /* looks sharper if outer border has a tighter radius (2 instead of 3) */
+}
+
+.progress-indicator {
+	-fx-progress-color: black;
+	-fx-spin-enabled: true;
+}
+
+
+.hyperlink,
+.hyperlink:hover,
+.hyperlink:hover:visited {
+    -fx-text-fill: gray;
+}
+.hyperlink:armed,
+.hyperlink:visited,
+.hyperlink:hover:armed {
+    -fx-text-fill: rgb(86,86,86)
+}
+.hyperlink:hover,
+.hyperlink:visited,
+.hyperlink:hover:visited {
+    -fx-underline: true;
+}
+.hyperlink:visited:armed {
+    -fx-underline: false;
+}
+.hyperlink:focused {
+    -fx-border-color: black;
+    -fx-border-style: segments(0.166667em, 0.166667em);
+    -fx-border-width: 1px;
+}
+
+/* IDs */
+
+/* toolbar buttons */
+.toolbar-buttons {
+	-fx-background-size: 18 18;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position:center;
+    -fx-background-color: transparent;
+    -fx-pref-width: 25;
+    -fx-pref-height: 25;
+}
+
+
+
+
+
+#toolbar-sortMenuButton {
+    -fx-background-image: url("../../../../../../resources/images/sortMOA.png"); 
+    -fx-background-size: 18 18;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position:left  ;
+    -fx-background-color: transparent;
+    -fx-pref-width: 40;
+    -fx-pref-height: 25;
+}
+/* 
+#toolbar-sortMenuButton:hover {
+    -fx-background-color: rgb(204,204,204) ;
+}
+*/
+#toolbar-settingsButton {
+	-fx-background-image: url("../../../../../../resources/images/settings.png");
+}
+#toolbar-createButton {
+	-fx-background-image: url("../../../../../../resources/images/create2.png");
+}
+#toolbar-syncButton {
+	-fx-background-image: url("../../../../../../resources/images/sync.png");
+}
+#toolbar-helpButton {
+	-fx-background-image: url("../../../../../../resources/images/help.png");
+}
+#toolbar-sortAZButton {
+	-fx-background-image: url("../../../../../../resources/images/sortAZ.png");
+}
+#toolbar-sortMOAButton {
+	-fx-background-image: url("../../../../../../resources/images/sortMOA.png");
+}
+#filler-button:disabled {
+	-fx-opacity: 0.0;
+}
+
+/* account details buttons */
+.detail-buttons {
+	-fx-background-size: 22 22;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position:center;
+    -fx-background-color: transparent;
+    -fx-pref-width: 28;
+}
+
+#details-backButton {
+	-fx-background-image: url("../../../../../../resources/images/back4.png");
+}
+#details-copyButton {
+	-fx-background-image: url("../../../../../../resources/images/copy.png");
+}
+#details-browserButton {
+	-fx-background-image: url("../../../../../../resources/images/browser.png");
+}
+#details-editButton {
+	-fx-background-image: url("../../../../../../resources/images/edit.png");
+}
+#details-deleteButton {
+	-fx-background-image: url("../../../../../../resources/images/delete3.png");
+}
+
+
+
+
+/* list details */
+#listDetails-anchorPane {
+	-fx-background-size: 200 200;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: bottom;
+    -fx-background-color: rgb(242,244,244);
+    -fx-background-image: url("../../../../../../resources/images/vault-15-opacity.png");
+}
+
+
+
+
+

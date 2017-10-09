@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.input.KeyCodeCombination?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+
+<BorderPane prefHeight="477.0" prefWidth="277.0" styleClass="BorderPane" stylesheets="@passvault-default.css" xmlns="http://javafx.com/javafx/8.0.131" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.passvault.ui.fx.view.RootLayoutController">
+   <top>
+      <MenuBar fx:id="menuBar" stylesheets="@passvault-default.css" BorderPane.alignment="CENTER">
+        <menus>
+          <Menu fx:id="fileMenu" text="_File">
+            <items>
+                  <MenuItem mnemonicParsing="false" onAction="#settingsPressed" text="Options" />
+                  <Menu mnemonicParsing="false" text="Synchronize">
+                    <items>
+                      <MenuItem fx:id="syncFreeMenuItem" mnemonicParsing="false" onAction="#syncPressed" text="Free Service" />
+                        <MenuItem fx:id="syncPersonalMenuItem" mnemonicParsing="false" onAction="#syncPersonlMenuItem" text="Personal Service" />
+                    </items>
+                  </Menu>
+                  <MenuItem fx:id="changeKeyMenuItem" mnemonicParsing="false" onAction="#changeKeyPressed" text="Change Key" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" onAction="#exitMenuItem" text="Exit" />
+            </items>
+               <accelerator>
+                  <KeyCodeCombination alt="UP" code="F" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
+               </accelerator>
+          </Menu>
+          <Menu text="_Actions">
+            <items>
+                  <MenuItem mnemonicParsing="false" onAction="#createPressed" text="Create" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem fx:id="editMenuItem" mnemonicParsing="false" onAction="#editMenuItem" text="Edit" />
+              <MenuItem fx:id="deleteMenuItem" mnemonicParsing="false" onAction="#deleteMenuItem" text="Delete" />
+                  <MenuItem fx:id="launchBrowserMenuItem" mnemonicParsing="false" onAction="#launchBrowserMenuItem" text="Copy Password/Launch Browser" />
+                  <MenuItem fx:id="copyMenuItem" mnemonicParsing="false" onAction="#copyPassMenuItem" text="Copy Password" />
+                  <MenuItem fx:id="copyOldMenuItem" mnemonicParsing="false" onAction="#copyOldPassMenuItem" text="Copy Old Password" />
+            </items>
+               <accelerator>
+                  <KeyCodeCombination alt="UP" code="A" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
+               </accelerator>
+          </Menu>
+          <Menu text="_Help">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#aboutMenuItem" text="About" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" onAction="#helpPressed" text="Show Help" />
+            </items>
+               <accelerator>
+                  <KeyCodeCombination alt="UP" code="H" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
+               </accelerator>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+   <center>
+      <BorderPane minWidth="5.0" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <top>
+            <ToolBar fx:id="toolBar" maxWidth="1.7976931348623157E308" minWidth="50.0" prefHeight="22.0" prefWidth="277.0" styleClass="TopToolBar" stylesheets="@passvault-default.css" BorderPane.alignment="CENTER">
+              <items>
+                <Button id="toolbar-createButton" fx:id="createButton" mnemonicParsing="false" onAction="#createPressed" styleClass="toolbar-buttons" stylesheets="@passvault-default.css" />
+                  <Button id="toolbar-syncButton" fx:id="syncButton" mnemonicParsing="false" onAction="#syncPressed" styleClass="toolbar-buttons" stylesheets="@passvault-default.css" />
+                  <Button id="toolbar-settingsButton" fx:id="settingsButton" mnemonicParsing="false" onAction="#settingsPressed" styleClass="toolbar-buttons" stylesheets="@passvault-default.css" />
+                  <MenuButton id="toolbar-sortMenuButton" fx:id="sortMenuButton" mnemonicParsing="false" prefHeight="27.0" prefWidth="23.0" stylesheets="@passvault-default.css">
+                    <items>
+                      <MenuItem fx:id="sortMOAMenuItem" mnemonicParsing="false" onAction="#sortMOAMenuItemPressed" text="Sort MOA" />
+                      <MenuItem fx:id="sortAZMenuItem" mnemonicParsing="false" onAction="#sortAZMenuItemPressed" text="Sort A-Z" />
+                    </items>
+                  </MenuButton>
+                  <Pane fx:id="fillerPane" maxHeight="18.0" maxWidth="1.7976931348623157E308" minWidth="0.0" prefHeight="18.0" prefWidth="1.0" />
+                  <Button id="toolbar-helpButton" fx:id="helpButton" mnemonicParsing="false" onAction="#helpPressed" styleClass="toolbar-buttons" stylesheets="@passvault-default.css" />
+              </items>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+            </ToolBar>
+         </top>
+      </BorderPane>
+   </center>
+</BorderPane>

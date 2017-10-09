@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="440.0" prefWidth="435.0" stylesheets="@passvault-default.css" xmlns="http://javafx.com/javafx/8.0.131" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.passvault.ui.fx.view.GeneratorOptionsLayoutController">
+   <children>
+      <CheckBox fx:id="upperCheckBox" layoutX="33.0" layoutY="116.0" mnemonicParsing="false" onAction="#upperCheckAccessed" text="Uppercase" underline="true" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="120.0" />
+      <CheckBox fx:id="lowerCheckBox" layoutX="174.0" layoutY="116.0" mnemonicParsing="false" onAction="#lowerCheckAccessed" text="Lowercase" underline="true" AnchorPane.leftAnchor="174.0" AnchorPane.topAnchor="120.0" />
+      <CheckBox fx:id="digitsCheckBox" layoutX="33.0" layoutY="160.0" mnemonicParsing="false" onAction="#digitsCheckAccessed" text="Digits" underline="true" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="160.0" />
+      <CheckBox fx:id="specialCheckBox" layoutX="174.0" layoutY="160.0" mnemonicParsing="false" onAction="#specialCheckAccessed" text="Special Characters" underline="true" AnchorPane.leftAnchor="174.0" AnchorPane.topAnchor="160.0" />
+      <TextArea fx:id="allowedCharactersTextArea" layoutX="35.0" layoutY="200.0" wrapText="true" AnchorPane.bottomAnchor="135.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="200.0" />
+      <Label layoutX="93.0" layoutY="335.0" text="Password Length [1-64]:" underline="true" AnchorPane.bottomAnchor="88.0" AnchorPane.leftAnchor="51.0" />
+      <TextField fx:id="lengthTextField" layoutX="226.0" layoutY="330.0" prefHeight="27.0" prefWidth="78.0" AnchorPane.bottomAnchor="83.0" AnchorPane.leftAnchor="226.0" />
+      <Button fx:id="cancelButton" layoutX="104.0" layoutY="384.0" mnemonicParsing="false" onAction="#cancelPressed" prefHeight="27.0" prefWidth="100.0" text="Cancel" AnchorPane.bottomAnchor="29.0" AnchorPane.leftAnchor="104.0" />
+      <Button fx:id="saveButton" layoutX="226.0" layoutY="384.0" mnemonicParsing="false" onAction="#savePressed" prefHeight="27.0" prefWidth="100.0" text="Save" AnchorPane.bottomAnchor="29.0" AnchorPane.leftAnchor="226.0" />
+      <Label layoutX="149.0" layoutY="50.0" prefHeight="85.0" prefWidth="363.0" text="The default allowed characters are shown below separated by spaces. To add/remove sub-groups of characters use the check boxes, or type/delete specific characters separated by spaces." textAlignment="CENTER" wrapText="true" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="20.0">
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font>
+      </Label>
+   </children>
+   <styleClass>
+      <String fx:value="BorderPane" />
+      <String fx:value="account-windows" />
+   </styleClass>
+</AnchorPane>

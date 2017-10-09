@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="list-view-anchor-pane" prefHeight="300.0" prefWidth="400.0" stylesheets="@passvault-default.css" xmlns="http://javafx.com/javafx/8.0.131" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.passvault.ui.fx.view.ListDetailsLayoutController">
+   <children>
+      <SplitPane dividerPositions="0.3" layoutX="70.0" layoutY="70.0" prefHeight="160.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane id="anchor-pane" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" stylesheets="@passvault-default.css">
+               <children>
+                  <ListView id="list-view" fx:id="listView" layoutX="-49.0" layoutY="49.0" prefHeight="200.0" prefWidth="200.0" stylesheets="@passvault-default.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <styleClass>
+                        <String fx:value="list-cell" />
+                        <String fx:value="indexed-cell" />
+                        <String fx:value="list-view" />
+                     </styleClass>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets></ListView>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <BorderPane layoutX="27.0" layoutY="49.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <bottom>
+                        <ToolBar fx:id="detailsToolBar" prefHeight="40.0" prefWidth="200.0" styleClass="BottomToolBar" BorderPane.alignment="CENTER">
+                          <items>
+                              <Button id="details-backButton" fx:id="backButton" mnemonicParsing="false" onAction="#backButtonPressed" prefHeight="35.0" prefWidth="35.0" styleClass="detail-buttons" stylesheets="@passvault-default.css">
+                                 <font>
+                                    <Font name="Comic Sans MS Bold" size="14.0" />
+                                 </font>
+                              </Button>
+                              <Pane fx:id="fillerPane" prefHeight="35.0" prefWidth="1.0" />
+                            <Button id="details-copyButton" fx:id="copyPasswordButton" mnemonicParsing="false" onAction="#copyButtonPressed" prefHeight="35.0" prefWidth="35.0" styleClass="detail-buttons" stylesheets="@passvault-default.css" textAlignment="CENTER" />
+                              <Button id="details-browserButton" fx:id="launchBrowserButton" mnemonicParsing="false" onAction="#browserButtonPressed" prefHeight="35.0" prefWidth="35.0" styleClass="detail-buttons" stylesheets="@passvault-default.css" />
+                              <Button id="details-editButton" fx:id="editButton" mnemonicParsing="false" onAction="#editButtonPressed" prefHeight="35.0" prefWidth="35.0" styleClass="detail-buttons" stylesheets="@passvault-default.css" />
+                              <Button id="details-deleteButton" fx:id="deleteButton" mnemonicParsing="false" onAction="#deleteButtonPressed" prefHeight="35.0" prefWidth="35.0" styleClass="detail-buttons" stylesheets="@passvault-default.css" />
+                          </items>
+                        </ToolBar>
+                     </bottom>
+                     <center>
+                        <AnchorPane id="listDetails-anchorPane" prefHeight="200.0" prefWidth="200.0" stylesheets="@passvault-default.css" BorderPane.alignment="CENTER">
+                           <children>
+                              <Label alignment="CENTER" layoutX="1.0" layoutY="29.0" text="Account Name:" textAlignment="CENTER" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="20.0">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="accountNameLabel" alignment="CENTER" layoutY="57.0" textAlignment="CENTER" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="40.0">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="121.0" layoutY="95.0" text="User Name:" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="75.0">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="userNameLabel" alignment="CENTER" layoutX="122.0" layoutY="121.0" textAlignment="CENTER" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="95.0">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="122.0" layoutY="159.0" text="URL:" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="130.0">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="urlLabel" alignment="TOP_CENTER" layoutX="121.0" layoutY="188.0" maxHeight="1.7976931348623157E308" prefHeight="54.0" prefWidth="279.0" textAlignment="CENTER" wrapText="true" AnchorPane.bottomAnchor="42.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="150.0">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="cantDecryptLabel" layoutX="14.0" layoutY="215.0" maxWidth="158.0" prefWidth="158.0" text="*Unable to decrypt password*" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0">
+                                 <font>
+                                    <Font name="System Italic" size="11.0" />
+                                 </font>
+                              </Label>
+                              <Button fx:id="decryptButton" layoutX="179.0" layoutY="209.0" maxHeight="18.0" maxWidth="66.0" mnemonicParsing="false" onAction="#decryptButtonPressed" prefHeight="18.0" prefWidth="66.0" text="decrypt" AnchorPane.bottomAnchor="10.0">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </AnchorPane>
+                     </center>
+                  </BorderPane>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>
