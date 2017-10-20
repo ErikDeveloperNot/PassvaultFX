@@ -24,7 +24,7 @@ public class Properties {
 		allowedCharacters = new ArrayList<>();
 		
 		for (String s : (List<String>)values.get("allowedCharacters")) {
-			System.out.println(allowedCharacters + ", " + s);
+			//System.out.println(allowedCharacters + ", " + s);
 			allowedCharacters.add(s.charAt(0));
 		}
 		

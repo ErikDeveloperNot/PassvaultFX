@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Terminal=false
+Name=PassvaultFX
+Icon=<VAULT_DIR>/install/linux/vault.png
+Exec=<VAULT_DIR>/bin/passvaultFX.sh

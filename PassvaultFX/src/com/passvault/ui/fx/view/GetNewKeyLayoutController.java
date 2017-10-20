@@ -3,9 +3,9 @@ package com.passvault.ui.fx.view;
 import com.passvault.ui.fx.utils.Utils;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
 public class GetNewKeyLayoutController {

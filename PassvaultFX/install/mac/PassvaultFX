@@ -1,0 +1,7 @@
+#!/bin/bash
+
+
+osascript -e 'tell app "Terminal"
+	do script "<VAULT_DIR>/bin/PassvaultFX.sh; exit"
+    #do script "cd /opt/builds/passvaultFX/dist; java -Xdock:icon=/opt/builds/passvaultFX/dist/install/mac/vault.icns -jar /opt/builds/passvaultFX/dist/passvaultFX.jar; exit"
+end tell'

@@ -100,13 +100,14 @@ public class SettingsLayoutController {
 	private static final String YES_FREE_SERVICE_LEFT_BUTTON = "Delete";
 	private static final String YES_FREE_SERVICE_RIGHT_BUTTON = "Remove";
 	
-	//TODO - this should come from a configuration file if I use one. still need to look at the deployment of FX
-	private static final String REGISTER_SERVER = "ec2-13-56-39-109.us-west-1.compute.amazonaws.com:8443";
+	private static String REGISTER_SERVER = "ec2-13-56-39-109.us-west-1.compute.amazonaws.com:8443";
 	
 	private static Logger logger;
 	
 	static {
 		logger = Logger.getLogger("com.passvault.ui.fx.view");
+		REGISTER_SERVER = System.getProperty("com.passvault.register.server", REGISTER_SERVER);
+		logger.finest("Registration server URL set to: " + REGISTER_SERVER);
 	}
 	
 	public SettingsLayoutController() {
@@ -117,18 +118,6 @@ public class SettingsLayoutController {
 	
 	@FXML
 	private void initialize() {
-		/*
-		tabPane.setOnKeyPressed((KeyEvent e) -> {
-			System.out.println("tabPane onKey: " + e.getCode().getName());
-			if (e.getCode() == KeyCode.TAB)  {
-				if (!saveKeyChoiceBox.isFocusTraversable()) {
-					saveKeyChoiceBox.setFocusTraversable(true);
-					sortChoiceBox.setFocusTraversable(true);
-					purgeChoiceBox.setFocusTraversable(true);
-				} 
-			} 
-		});
-		*/
 		
 		// setup General tab components
 		ObservableList<Boolean> booleanList = FXCollections.observableArrayList();
@@ -160,30 +149,21 @@ public class SettingsLayoutController {
 			
 			if (gateway != null && gateway.getUserName() != null && !gateway.getUserName().equalsIgnoreCase("") &&
 					gateway.getPassword() != null && !gateway.getPassword().equalsIgnoreCase("")) {
-				/*freeServiceMessageLabel.setText(YES_FREE_SERVICE);
-				freeServiceLeftButton.setText(YES_FREE_SERVICE_LEFT_BUTTON);
-				freeServiceRightButton.setText(YES_FREE_SERVICE_RIGHT_BUTTON);
-				freeServiceEmailTextField.setText(gateway.getUserName());
-				freeServiceEmailTextField.setEditable(false);
-				freeServicePasswordField.setText(gateway.getPassword());
-				freeServicePasswordField.setEditable(false);*/
+			
 				flipToYesFreeService(gateway.getUserName(), gateway.getPassword());
 			} else {
-				/*freeServiceMessageLabel.setText(NO_FREE_SERVICE);
-				freeServiceLeftButton.setText(NO_FREE_SERVICE_LEFT_BUTTON);
-				freeServiceRightButton.setText(NO_FREE_SERVICE_RIGHT_BUTTON);*/
-				//freeServiceEmailTextField.setText(gateway.getUserName());
-				//freeServicePasswordField.setText(gateway.getPassword());
 				flipToNoFreeService();
 			}
 			
 			freeServiceLeftButton.setOnKeyPressed(Utils.getEnterKeyHandler(() -> freeServiceLeftButtonPressed()));
-			freeServiceRightButton.setOnKeyPressed(Utils.getEnterKeyHandler(() -> freeServiceRightButtonPressed()));
+			//freeServiceRightButton.setOnKeyPressed(Utils.getEnterKeyHandler(() -> freeServiceRightButtonPressed()));
 			freeServiceRightButton.setOnKeyPressed((KeyEvent e) -> {
 				if (e.getCode() == KeyCode.TAB)  {
 					tabPane.requestFocus();
 					e.consume();
-				} 
+				} else if (e.getCode() == KeyCode.ENTER)  {
+					freeServiceRightButtonPressed();
+				}
 			});
 		}
 		
@@ -374,7 +354,9 @@ public void setTabPane(TabPane tabPane) {
 			settings.getGeneral().setAccountUUID("");
 			flipToNoFreeService();
 			//settingsUpdatedList.add(new FreeSyncSettingsUpdated(passvault, ""));
-			passvault.getDatabase().updateAccountUUID(passvault.getAccounts(), "");
+			FXCBLStore store = (FXCBLStore)passvault.getDatabase();
+			store.saveSettings(settings);
+			store.updateAccountUUID(passvault.getAccounts(), "");
 		} else {
 			/*
 			 * Create
@@ -416,7 +398,9 @@ public void setTabPane(TabPane tabPane) {
 					settings.getSync().setRemote((Gateway)gateway);
 					settings.getGeneral().setAccountUUID(email);
 					//settingsUpdatedList.add(new FreeSyncSettingsUpdated(passvault, email));
-					passvault.getDatabase().updateAccountUUID(passvault.getAccounts(), email);
+					FXCBLStore store = (FXCBLStore)passvault.getDatabase();
+					store.saveSettings(settings);
+					store.updateAccountUUID(passvault.getAccounts(), email);
 					flipToYesFreeService(email, password);
 					Utils.showAlert(AlertType.CONFIRMATION, stage, "Register Response", "Success", response.getMessage());
 				} else {
@@ -441,7 +425,9 @@ public void setTabPane(TabPane tabPane) {
 			settings.getGeneral().setAccountUUID("");
 			flipToNoFreeService();
 			//settingsUpdatedList.add(new FreeSyncSettingsUpdated(passvault, ""));
-			passvault.getDatabase().updateAccountUUID(passvault.getAccounts(), "");
+			FXCBLStore store = (FXCBLStore)passvault.getDatabase();
+			store.saveSettings(settings);
+			store.updateAccountUUID(passvault.getAccounts(), "");
 			Utils.showAlert(AlertType.CONFIRMATION, stage, "Account Removal", "Success", 
 					"The account is no longer configured");
 		} else {
@@ -486,7 +472,9 @@ public void setTabPane(TabPane tabPane) {
 					((Gateway)gateway).setPassword(password);
 					settings.getSync().setRemote((Gateway)gateway);
 					settings.getGeneral().setAccountUUID(email);
-					passvault.getDatabase().updateAccountUUID(passvault.getAccounts(), email);
+					FXCBLStore store = (FXCBLStore)passvault.getDatabase();
+					store.saveSettings(settings);
+					store.updateAccountUUID(passvault.getAccounts(), email);
 					flipToYesFreeService(email, password);
 					Utils.showAlert(AlertType.CONFIRMATION, stage, "Register Response", "Success", response.getMessage());
 				} else {

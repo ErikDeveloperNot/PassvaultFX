@@ -1,8 +1,8 @@
 package com.passvault.ui.fx;
 
+import java.awt.Toolkit;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -120,7 +120,6 @@ public class Passvault extends Application {
 	        primaryStage.setScene(scene);
 	        primaryStage.setTitle("Passvault");
 	        primaryStage.getIcons().add(new Image("file:resources/images/vault-mpi.png"));
-	        primaryStage.show();
 	        
 	        BorderPane innerBorderPane = (BorderPane)rootLayout.getChildren().get(1);
 	        toolBar = (ToolBar) innerBorderPane.getChildren().get(0);
@@ -184,6 +183,7 @@ public class Passvault extends Application {
 
 	        listDetailsController.setAccountsList(accounts);
 	        listDetailsController.setPane();
+	        primaryStage.show();
 		} catch (Exception e) {
 			logger.severe("Error in initialization: " + e.getMessage());
 			e.printStackTrace();

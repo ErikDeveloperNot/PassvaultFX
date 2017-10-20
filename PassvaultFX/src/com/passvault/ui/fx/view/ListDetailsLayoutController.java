@@ -1,8 +1,5 @@
 package com.passvault.ui.fx.view;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 import java.util.logging.Logger;
 
 import com.passvault.crypto.AESEngine;
@@ -15,7 +12,6 @@ import com.passvault.util.couchbase.CBLStore;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -96,7 +92,10 @@ public class ListDetailsLayoutController {
 
 			@Override
 			public void handle(MouseEvent event) {
-				showAccountDetails(listView.getSelectionModel().getSelectedItem());
+				Account toShow = listView.getSelectionModel().getSelectedItem();
+				
+				if (toShow != null)
+					showAccountDetails(toShow);
 			
 			}
 		});
@@ -106,7 +105,10 @@ public class ListDetailsLayoutController {
 			@Override
 			public void handle(KeyEvent event) {
 				if(event.getCode() == KeyCode.ENTER) {
-					showAccountDetails(listView.getSelectionModel().getSelectedItem());
+					Account toShow = listView.getSelectionModel().getSelectedItem();
+					
+					if (toShow != null)
+						showAccountDetails(toShow);
 				} else if(event.getCode() == KeyCode.RIGHT) {
 					event.consume();
 				}
@@ -271,7 +273,7 @@ MRUComparator.getInstance().saveAccessMap(passvault.getDatabase());
 	protected void editButtonPressed() {
 		logger.finest("Editing account: " + currentAccount);
 		boolean accountSaved = passvault.editAccount(currentAccount);
-		System.out.println(accountSaved);
+		//System.out.println(accountSaved);
 		
 		if (accountSaved) {
 			userNameLabel.setText(currentAccount.getUser());

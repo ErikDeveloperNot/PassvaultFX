@@ -66,16 +66,31 @@ public class Utils {
 			}
 		});
 	}
-	
+
 	
 	public static boolean launchBrowser(String url) {
+		logger.info("Trying to open URL: " + url);
 		
 		if (Desktop.isDesktopSupported()) {
+			logger.fine("Desktop is supported on this platform");
 			Desktop desktop = Desktop.getDesktop();
 			
 			if (desktop.isSupported(Action.BROWSE)) {
+				logger.fine("Browse is supported on this platform");
+				
 				try {
-					desktop.browse(new URI(url));
+					/*
+					 * it would seem that openJDK fails to open browser from GUI thread
+					 * with oracle jdk no issue, so execute from another thread
+					 */
+					new Thread(() -> {
+						try {
+							logger.finest("Starting browser");
+							desktop.browse(new URI(url));
+							logger.finest("Browser started");
+						} catch(Exception e) {e.printStackTrace();}
+					}, "browser-thread-" + System.currentTimeMillis()).start();
+					
 					return true;
 				} catch (Exception e) {
 					logger.warning("Error opening browser to: " + url + "\n" + e.getMessage());
@@ -102,7 +117,8 @@ public class Utils {
 	public static void showAlert(AlertType type, Stage stage, String title, String header, String content) {
 		Alert alert = new Alert(type);
 		DialogPane dialogPane = alert.getDialogPane();
-		dialogPane.getStylesheets().add(Utils.class.getResource("../view/passvault-default.css").toExternalForm());
+		dialogPane.getStylesheets().add(Utils.class.getResource("passvault-default.css").toExternalForm());
+		
 		dialogPane.getStyleClass().add("BorderPane");
 		alert.initOwner(stage);
         alert.setTitle(title);
@@ -186,7 +202,17 @@ public class Utils {
 							  handler);
 				}
 				
-				while(status.isRunning()) {
+					/*
+					 * there is no call to verify if sync has run, status will not report it and isRunning
+					 * may returned stopped before it ever runs. There are change count calls but if there are
+					 * 0 changes locally/remote there would be no way to know, so sleep for 2 seconds before
+					 * checking. this still could fail in some situations with a slow client but ....
+					 */
+					try {
+						Thread.sleep(2_000L);
+					} catch (InterruptedException e) {/*eat it, just dont want to throw an exception for this sleep*/}
+				
+					while(status.isRunning()) {
 					logger.finest(">>>>>>>>>>>>>>>>Still Running<<<<<<<<<<<<<<<<");
 					Thread.sleep(200L);
 				}

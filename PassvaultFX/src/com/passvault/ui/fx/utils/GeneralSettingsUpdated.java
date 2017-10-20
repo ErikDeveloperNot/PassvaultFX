@@ -1,11 +1,8 @@
 package com.passvault.ui.fx.utils;
 
-import java.util.Collections;
 import java.util.logging.Logger;
 
 import com.passvault.ui.fx.Passvault;
-import com.passvault.ui.fx.model.Settings;
-import com.passvault.util.MRUComparator;
 
 public class GeneralSettingsUpdated implements SettingsUpdated {
 

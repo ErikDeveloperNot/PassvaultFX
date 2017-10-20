@@ -8,14 +8,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="150.0" prefWidth="350.0" styleClass="BorderPane" stylesheets="@passvault-default.css" xmlns="http://javafx.com/javafx/8.0.131" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.passvault.ui.fx.view.LoginLayoutController">
+<AnchorPane prefHeight="150.0" prefWidth="370.0" styleClass="BorderPane" stylesheets="@passvault-default.css" xmlns="http://javafx.com/javafx/8.0.131" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.passvault.ui.fx.view.LoginLayoutController">
    <children>
       <ImageView fitHeight="97.0" fitWidth="127.0" layoutX="14.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="239.0" AnchorPane.topAnchor="15.0">
          <image>
             <Image url="@../../../../../../resources/images/vault-xxxhdpi.png" />
          </image>
       </ImageView>
-      <Label layoutX="118.0" layoutY="30.0" prefHeight="17.0" prefWidth="218.0" text="Enter Passvault Encryption Key:">
+      <Label layoutX="118.0" layoutY="30.0" prefHeight="17.0" text="Enter Passvault Encryption Key:" AnchorPane.leftAnchor="118.0">
          <font>
             <Font size="14.0" />
          </font>

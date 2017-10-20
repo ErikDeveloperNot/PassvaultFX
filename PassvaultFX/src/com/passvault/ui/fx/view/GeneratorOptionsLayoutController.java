@@ -10,7 +10,6 @@ import com.passvault.ui.fx.utils.Utils;
 import com.passvault.util.DefaultRandomPasswordGenerator;
 import com.passvault.util.RandomPasswordGenerator;
 
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 //import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -205,6 +204,14 @@ public class GeneratorOptionsLayoutController {
 		}
 		
 		currentChars = set;
+		
+		if (currentChars.size() < 1) {
+			logger.warning("Generator needs to allow at least 1 character");
+			Utils.showAlert(AlertType.ERROR, stage, "Character Error", "No Characters",
+            		"At least 1 character needs to be allowed for the gnereator");
+			return false;
+		}
+			
 		logger.fine("updateSetWithTextArea returning: TRUE");
 		return true;
 	}

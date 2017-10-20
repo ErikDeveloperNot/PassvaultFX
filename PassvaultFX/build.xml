@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!-- reference https://docs.oracle.com/javase/9/deploy/javafx-ant-tasks.htm#JSDPG179 -->
+ 
+<project name="Ensemble8 JavaFX Demo Application" default="default" basedir="."
+  xmlns:fx="javafx:com.sun.javafx.tools.ant">
+ 
+  <property name="JAVA_HOME" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home"/>
+ 
+  <path id="CLASSPATH">
+    <!--pathelement location="lib/lucene-core-3.2.0.jar"/>
+    <pathelement location="lib/lucene-grouping-3.2.0.jar"/-->
+    <pathelement path="lib/*"/>
+    <pathelement path="classes"/>
+  </path>
+  
+  <property name="version" value="1.0.0"/>
+  <property name="build.home" value="/Users/user1/Git/passvaultFX/PassvaultFX"/>
+  <property name="build.src.dir" value="${build.home}/src"/>
+  <property name="build.classes.dir" value="${build.home}/bin"/>
+  <property name="build.dist.dir" value="/opt/builds/passvaultFX/dist"/>
+  <property name="release.dir" value="/opt/builds/passvaultFX/release"/>
+  <property name="thirdPartyJars.dir" value="/Users/user1/Git/passvault/Passvault/dependencies"/>
+  <property name="passvaultCoreJar.dir" value="/opt/builds/passvault/production/.passvault/lib"/>
+ 
+  <target name="default" depends="clean">
+ 
+    <mkdir dir="${build.dist.dir}"/>
+
+    <taskdef resource="com/sun/javafx/tools/ant/antlib.xml"
+      uri="javafx:com.sun.javafx.tools.ant"
+      classpath="${JAVA_HOME}/lib/ant-javafx.jar"/>
+ 
+      <fx:application id="passvaultFX"
+        name="PassvaultFX"
+        mainClass="com.passvault.ui.fx.Passvault"/>
+ 
+      <fx:resources id="appRes">
+        <fx:fileset dir="${build.dist.dir}" includes="passvaultFX.jar"/>
+        <fx:fileset dir="${thirdPartyJars.dir}"/>
+        <fx:fileset dir="${passvaultCoreJar.dir}" includes="Passvault-core.jar,Passvault-androidBase64.jar"/>
+        <fx:fileset dir="${build.classes.dir}"/>
+        <fx:fileset dir="${build.home}" includes="resources/*/**"/>
+      </fx:resources>
+ 
+      <fx:jar destfile="${build.dist.dir}/passvaultFX.jar">
+        <fx:application refid="passvaultFX"/>
+        <fx:resources refid="appRes"/>
+
+        <fx:fileset dir="${build.home}" includes="resources/*/**"/>
+	<fx:fileset dir="${build.dist.dir}" includes="passvaultFX.jar"/>
+        <!--fx:fileset dir="lib"/-->
+        <fx:fileset dir="${build.classes.dir}"/>
+
+      </fx:jar>
+
+
+      <copy todir="${build.dist.dir}">
+        <fileset dir="${thirdPartyJars.dir}"/>
+        <fileset dir="${passvaultCoreJar.dir}" includes="Passvault-core.jar,Passvault-androidBase64.jar"/>
+        <!--fileset dir="${build.home}" includes="resources/*/**"/-->
+      </copy>
+ 
+      <!--fx:deploy outdir="." embedJNLP="false"
+        outfile="ensemble8"
+        nativeBundles="none">
+ 
+        <fx:application refId="ensemble8"/>
+ 
+        <fx:resources refid="appRes"/>
+ 
+        <fx:info title="Ensemble8 JavaFX Demo Application"
+          vendor="Oracle Corporation"/>
+ 
+      </fx:deploy-->
+ 
+  </target>
+
+
+  <target name="release" depends="clean,default">
+    <delete quiet="true" dir="${release.dir}">
+      <!--fileset dir="${release.dir}" includes="**/*"/-->
+    </delete>
+
+    <copy todir="${release.dir}">
+      <fileset dir="${build.home}" includes="install/*/**"/>
+    </copy>
+  	
+  	<copy todir="${release.dir}/install/jars">
+      <fileset dir="${build.dist.dir}" includes="*.jar"/>
+    </copy>
+  	
+  	<tar destfile="${release.dir}/../passvaultFX_${version}.tar"
+  	        longfile="gnu"
+  	        compression="gzip">
+  	        <tarfileset dir="${release.dir}" mode="777">
+  	            <include name="install/mac/PassvaultFX"/>
+  	            <!--exclude name="bin/**"/-->
+  	        </tarfileset>
+  	        <tarfileset dir="${release.dir}" mode="775">
+  	            <include name="install/install.sh"/>
+  	        		<include name="install/passvaultFX.sh"/>
+  	        </tarfileset>
+	        <tarfileset dir="${release.dir}">
+	            <include name="**/*"/>
+	        	    <exclude name="install/install.sh"/>
+	        		<exclude name="install/passvaultFX.sh"/>
+	           	<exclude name="install/mac/PassvaultFX"/>
+	            <!--exclude name="bin/**"/-->
+	        </tarfileset>
+  	    </tar> 
+  	
+    <gzip destfile="${release.dir}/../passvaultFX_${version}.tar.gz" src="${release.dir}/../passvaultFX_${version}.tar"/>
+  	
+  	<zip destfile="${release.dir}/../passvaultFX_${version}.zip"
+  	       basedir="${release.dir}"
+  	/>
+    
+  </target>
+
+ 
+  <target name="clean">
+    <!--mkdir dir="${build.dist.dir}"/-->
+ 
+    <delete dir="${build.dist.dir}" quiet="true">
+      <!--fileset dir="${build.classes.dir}" includes="**/*"/-->
+      <!--fileset dir="${build.dist.dir}" includes="**/*"/-->
+    </delete>
+ 
+  </target>
+ 
+</project>
