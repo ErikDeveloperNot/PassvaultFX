@@ -1,4 +1,4 @@
-package com.passvault.ui.fx.model;
+package com.passvault.ui.fx.modelToRemove;
 
 import java.util.List;
 
@@ -8,18 +8,12 @@ import com.passvault.util.model.Gateways;
 
 public class Settings {
 
-	private String docType;
+	//private String docType;
 	private General general;
 	private Generator generator;
 	private Database database;
 	private Gateways sync;
 	
-	public String getDocType() {
-		return docType;
-	}
-	public void setDocType(String docType) {
-		this.docType = docType;
-	}
 	public General getGeneral() {
 		return general;
 	}
@@ -44,9 +38,14 @@ public class Settings {
 	public void setSync(Gateways sync) {
 		this.sync = sync;
 	}
+	/*public String getDocType() {
+		return docType;
+	}
+	public void setDocType(String docType) {
+		this.docType = docType;
+	}*/
 	
 	public void resetDefaults() {
-		docType = FXCBLStore.SETTINGS_DTYPE;
 		general = new General();
 		generator = new Generator();
 		database = new Database();
@@ -116,5 +115,6 @@ public class Settings {
 		
 		return rpg;
 	}
+	
 	
 }

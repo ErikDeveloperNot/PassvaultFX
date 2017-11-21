@@ -7,7 +7,8 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import com.passvault.crypto.AESEngine;
-import com.passvault.ui.fx.model.Settings;
+import com.passvault.util.data.file.JsonStore;
+import com.passvault.util.data.file.model.Settings;
 import com.passvault.ui.fx.utils.FXCBLStore;
 import com.passvault.ui.fx.utils.SettingsUpdated;
 import com.passvault.ui.fx.utils.TabChangedHandler;
@@ -28,7 +29,8 @@ import com.passvault.util.AccountUUIDResolver;
 import com.passvault.util.MRUComparator;
 import com.passvault.util.RandomPasswordGenerator;
 import com.passvault.util.Utils;
-import com.passvault.util.couchbase.CBLStore;
+import com.passvault.util.data.Store;
+import com.passvault.util.data.couchbase.CBLStore;
 
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
@@ -68,7 +70,8 @@ public class Passvault extends Application {
 	
 	private ListDetailsLayoutController listDetailsController;
 	private ObservableList<Account> accounts;
-	private FXCBLStore cblStore;
+	//private FXCBLStore cblStore;
+	private Store store;
 	private static Settings settings;
 	
 	private static Logger logger;
@@ -107,8 +110,10 @@ public class Passvault extends Application {
 				}
 			});
 	        
-	        cblStore = new FXCBLStore("pass_vault", CBLStore.DatabaseFormat.SQLite, "");
-	        settings = cblStore.loadSettings();
+	        //cblStore = new FXCBLStore("pass_vault", CBLStore.DatabaseFormat.SQLite, "");
+	        store = new JsonStore();
+	        //settings = cblStore.loadSettings();
+	        settings = store.loadSettings();
 	        
 			FXMLLoader loader = new FXMLLoader();
 	        loader.setLocation(Passvault.class.getResource("view/RootLayout.fxml"));
@@ -155,26 +160,32 @@ public class Passvault extends Application {
 		        key = AESEngine.finalizeKey(key, AESEngine.KEY_LENGTH_256);
 	        }
 	        
-	        cblStore.setEncryptionKey(key);
+	        //cblStore.setEncryptionKey(key);
+	        store.setEncryptionKey(key);
 	        
 	        //key = AESEngine.finalizeKey(key, AESEngine.KEY_LENGTH_256);
 	        //cblStore = new FXCBLStore("pass_vault", CBLStore.DatabaseFormat.SQLite, key);
 	        //settings = cblStore.loadSettings();
 	        Utils.setAccountUUIDResolver(com.passvault.ui.fx.utils.Utils.getAccountUUIDResolver());
-	        cblStore.updatateAccountUUID(com.passvault.ui.fx.utils.Utils.getAccountUUIDResolver().getAccountUUID());
+	        //cblStore.updatateAccountUUID(com.passvault.ui.fx.utils.Utils.getAccountUUIDResolver().getAccountUUID());
+	        store.updateAccountUUID(null, com.passvault.ui.fx.utils.Utils.getAccountUUIDResolver().getAccountUUID());
 	        accounts = FXCollections.observableArrayList();
-	        new MRUComparator(cblStore).setReverse(false);
+	        //new MRUComparator(cblStore).setReverse(false);
+	        new MRUComparator(store).setReverse(false);
 	        logger.fine("Loading accounts from database");
-	        cblStore.loadAccounts(accounts);
+	        //cblStore.loadAccounts(accounts);
+	        store.loadAccounts(accounts);
 	        logger.fine(accounts.size() + " accounts were loaded");
 	        
 	        // check if purge, if so do it
 	        if (settings.getDatabase().isPurge()) {
-	        		cblStore.purgeDeletes();
+	        		//cblStore.purgeDeletes();
+	        		store.purgeDeletes();
 	        }
 	        
 	        // debug any conflicts, shouldn't be any
-	        cblStore.printConflicts();
+	        //cblStore.printConflicts();
+	        store.printConflicts();    //does nothing but keep it in case it is used later
 	        
 	        com.passvault.ui.fx.utils.Utils.sortAccounts(accounts, settings);
 	   
@@ -570,7 +581,8 @@ public class Passvault extends Application {
 	        // after window is dismissed run check on the last tab accessed and then save Settings to database
 	        controller.saveTab(controller.getLastTab());
 	        logger.info("Saving settings to database");
-	        cblStore.saveSettings(settings);
+	        //cblStore.saveSettings(settings);
+	        store.saveSettings(settings);
 	        
 	        // finally run through update list and run any needed actions
 	        for (SettingsUpdated update : controller.getSettingsUpdatedList()) {
@@ -584,8 +596,8 @@ public class Passvault extends Application {
 	}
 	
 	
-	public CBLStore getDatabase() {
-		return cblStore;
+	public Store getDatabase() { //CBLStore getDatabase() {
+		return store;
 	}
 	
 	

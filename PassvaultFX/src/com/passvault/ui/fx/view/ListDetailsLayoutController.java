@@ -8,7 +8,9 @@ import com.passvault.ui.fx.utils.AccountDetailsShowing;
 import com.passvault.ui.fx.utils.Utils;
 import com.passvault.util.Account;
 import com.passvault.util.MRUComparator;
-import com.passvault.util.couchbase.CBLStore;
+import com.passvault.util.data.Store;
+import com.passvault.util.data.couchbase.CBLStore;
+import com.passvault.util.data.file.JsonStore;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -311,19 +313,20 @@ MRUComparator.getInstance().saveAccessMap(passvault.getDatabase());
 	@FXML
 	private void decryptButtonPressed() {
 		String oldKey = passvault.getOldKey();
-		CBLStore cblStore = passvault.getDatabase();
+		//CBLStore cblStore = passvault.getDatabase();
+		Store store = passvault.getDatabase();
 		String password = null;
 		String oldPassword = null;
 		
 		if (oldKey != null && !oldKey.equalsIgnoreCase("")) {
 			try {
 				oldKey = AESEngine.finalizeKey(oldKey, AESEngine.KEY_LENGTH_256);
-				cblStore = passvault.getDatabase();
+				//cblStore = passvault.getDatabase();
 				
 				password = 
-						AESEngine.getInstance().decryptBytes(oldKey, cblStore.decodeString(currentAccount.getPass()));
+						AESEngine.getInstance().decryptBytes(oldKey, store.decodeString(currentAccount.getPass()));
 				oldPassword = 
-						AESEngine.getInstance().decryptBytes(oldKey, cblStore.decodeString(currentAccount.getOldPass()));
+						AESEngine.getInstance().decryptBytes(oldKey, store.decodeString(currentAccount.getOldPass()));
 			} catch(Exception e) {
 				logger.warning("Error decrypting password with old key for account: " + currentAccount + "\n" + e.getMessage());
 				e.printStackTrace();
@@ -349,7 +352,7 @@ MRUComparator.getInstance().saveAccessMap(passvault.getDatabase());
 			currentAccount.setUpdateTime(System.currentTimeMillis());
 			currentAccount.setValidEncryption(true);
 			// save account to encrypt the password with the current key
-			cblStore.saveAccount(currentAccount);
+			store.saveAccount(currentAccount);
 			decryptButton.setVisible(false);
 			cantDecryptLabel.setVisible(false);
 			copyPasswordButton.setDisable(false);

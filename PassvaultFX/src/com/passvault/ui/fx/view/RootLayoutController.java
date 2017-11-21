@@ -5,9 +5,10 @@ import java.util.logging.Logger;
 
 import com.passvault.crypto.AESEngine;
 import com.passvault.ui.fx.Passvault;
-import com.passvault.ui.fx.model.Settings;
+import com.passvault.util.data.Store;
+import com.passvault.util.data.file.model.Settings;
 import com.passvault.ui.fx.utils.AccountDetailsShowing;
-import com.passvault.ui.fx.utils.FXCBLStore;
+//import com.passvault.ui.fx.utils.FXCBLStore;
 import com.passvault.ui.fx.utils.Utils;
 import com.passvault.util.Account;
 import com.passvault.util.MRUComparator;
@@ -248,7 +249,7 @@ public class RootLayoutController {
 			return;
 		}
 		
-		FXCBLStore store = (FXCBLStore)passvault.getDatabase();
+		Store store = passvault.getDatabase();
 		logger.finest("Setting new encryption key");
 		store.setEncryptionKey(newKey);
 		store.saveAccounts(passvault.getAccounts());
@@ -293,7 +294,7 @@ public class RootLayoutController {
 	private void sortMOAMenuItemPressed() {
 		passvault.getSettings().getGeneral().setSortMRU(true);
 		Collections.sort(passvault.getAccounts(), MRUComparator.getInstance());
-		((FXCBLStore)passvault.getDatabase()).saveSettings(passvault.getSettings());
+		passvault.getDatabase().saveSettings(passvault.getSettings());
 	}
 	
 	
@@ -301,7 +302,7 @@ public class RootLayoutController {
 	private void sortAZMenuItemPressed() {
 		passvault.getSettings().getGeneral().setSortMRU(false);
 		Collections.sort(passvault.getAccounts());
-		((FXCBLStore)passvault.getDatabase()).saveSettings(passvault.getSettings());
+		passvault.getDatabase().saveSettings(passvault.getSettings());
 	}
 	
 	

@@ -1,4 +1,4 @@
-package com.passvault.ui.fx.model;
+package com.passvault.ui.fx.modelToRemove;
 
 import java.util.Map;
 

@@ -6,10 +6,12 @@ import java.util.logging.Logger;
 
 import com.passvault.crypto.AESEngine;
 import com.passvault.ui.fx.Passvault;
-import com.passvault.ui.fx.model.Generator;
-import com.passvault.ui.fx.model.Properties;
-import com.passvault.ui.fx.model.Settings;
-import com.passvault.ui.fx.utils.FXCBLStore;
+import com.passvault.util.data.Store;
+import com.passvault.util.data.file.JsonStore;
+import com.passvault.util.data.file.model.Generator;
+import com.passvault.util.data.file.model.Properties;
+import com.passvault.util.data.file.model.Settings;
+//import com.passvault.ui.fx.utils.FXCBLStore;
 import com.passvault.ui.fx.utils.GeneralSettingsUpdated;
 import com.passvault.ui.fx.utils.SettingsUpdated;
 import com.passvault.ui.fx.utils.TabChangedHandler;
@@ -18,6 +20,7 @@ import com.passvault.util.DefaultRandomPasswordGenerator;
 import com.passvault.util.model.Gateway;
 import com.passvault.util.model.Gateways;
 import com.passvault.util.register.RegisterAccount;
+import com.passvault.util.register.RegisterAccount.StoreType;
 import com.passvault.util.register.RegisterResponse;
 
 import javafx.collections.FXCollections;
@@ -30,6 +33,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
@@ -118,6 +122,19 @@ public class SettingsLayoutController {
 	
 	@FXML
 	private void initialize() {
+		/*
+		 * Json will not allow own sync for now, so remove it but keep it in the code possibly to be added back
+		 */
+		Tab syncPersonalTab = null;
+		
+		for (Tab tab : tabPane.getTabs()) {
+			if (tab.getText().equalsIgnoreCase("Sync Personal")) {
+				syncPersonalTab = tab;
+			}
+		}
+		
+		if (syncPersonalTab != null)
+			tabPane.getTabs().remove(syncPersonalTab);
 		
 		// setup General tab components
 		ObservableList<Boolean> booleanList = FXCollections.observableArrayList();
@@ -165,6 +182,9 @@ public class SettingsLayoutController {
 					freeServiceRightButtonPressed();
 				}
 			});
+		} else {
+			settings.setSync(new Gateways());
+			flipToNoFreeService();
 		}
 		
 		
@@ -250,7 +270,9 @@ public void setTabPane(TabPane tabPane) {
 			settings.getGeneral().setSaveKey(saveKeyChoiceBox.getValue());
 			
 			if (settings.getGeneral().isSaveKey()) {
-				String key = ((FXCBLStore)passvault.getDatabase()).getKey();
+				//String key = ((FXCBLStore)passvault.getDatabase()).getKey();
+				String key = settings.getGeneral().getAccountUUID();
+				
 				String _key = new String(passvault.getDatabase().encodeBytes(AESEngine.getInstance()
 						.encryptString(passvault.getCOMMON_KEY(), key)));
 				settings.getGeneral().setKey(_key);
@@ -329,7 +351,7 @@ public void setTabPane(TabPane tabPane) {
 			Task<Object> deleteTask = new Task<Object>() {
 				@Override
 				protected Object call() throws Exception {
-					RegisterAccount registerAccount = new RegisterAccount(REGISTER_SERVER);
+					RegisterAccount registerAccount = new RegisterAccount(REGISTER_SERVER, StoreType.JSON);
 					return registerAccount.deleteAccount(freeServiceEmailTextField.getText(), 
 														freeServicePasswordField.getText());
 				}
@@ -354,7 +376,7 @@ public void setTabPane(TabPane tabPane) {
 			settings.getGeneral().setAccountUUID("");
 			flipToNoFreeService();
 			//settingsUpdatedList.add(new FreeSyncSettingsUpdated(passvault, ""));
-			FXCBLStore store = (FXCBLStore)passvault.getDatabase();
+			Store store = passvault.getDatabase();
 			store.saveSettings(settings);
 			store.updateAccountUUID(passvault.getAccounts(), "");
 		} else {
@@ -373,7 +395,7 @@ public void setTabPane(TabPane tabPane) {
 			Task<Object> createTask = new Task<Object>() {
 				@Override
 				protected Object call() throws Exception {
-					RegisterAccount registerAccount = new RegisterAccount(REGISTER_SERVER);
+					RegisterAccount registerAccount = new RegisterAccount(REGISTER_SERVER, StoreType.JSON);
 					return registerAccount.registerV1(email, password);
 				}
 			};
@@ -398,7 +420,7 @@ public void setTabPane(TabPane tabPane) {
 					settings.getSync().setRemote((Gateway)gateway);
 					settings.getGeneral().setAccountUUID(email);
 					//settingsUpdatedList.add(new FreeSyncSettingsUpdated(passvault, email));
-					FXCBLStore store = (FXCBLStore)passvault.getDatabase();
+					Store store = passvault.getDatabase();
 					store.saveSettings(settings);
 					store.updateAccountUUID(passvault.getAccounts(), email);
 					flipToYesFreeService(email, password);
@@ -425,7 +447,7 @@ public void setTabPane(TabPane tabPane) {
 			settings.getGeneral().setAccountUUID("");
 			flipToNoFreeService();
 			//settingsUpdatedList.add(new FreeSyncSettingsUpdated(passvault, ""));
-			FXCBLStore store = (FXCBLStore)passvault.getDatabase();
+			Store store = passvault.getDatabase();
 			store.saveSettings(settings);
 			store.updateAccountUUID(passvault.getAccounts(), "");
 			Utils.showAlert(AlertType.CONFIRMATION, stage, "Account Removal", "Success", 
@@ -446,7 +468,7 @@ public void setTabPane(TabPane tabPane) {
 			Task<Object> configureTask = new Task<Object>() {
 				@Override
 				protected Object call() throws Exception {
-					RegisterAccount registerAccount = new RegisterAccount(REGISTER_SERVER);
+					RegisterAccount registerAccount = new RegisterAccount(REGISTER_SERVER, StoreType.JSON);
 					return registerAccount.getGatewatConfig();
 				}
 			};
@@ -472,7 +494,7 @@ public void setTabPane(TabPane tabPane) {
 					((Gateway)gateway).setPassword(password);
 					settings.getSync().setRemote((Gateway)gateway);
 					settings.getGeneral().setAccountUUID(email);
-					FXCBLStore store = (FXCBLStore)passvault.getDatabase();
+					Store store = passvault.getDatabase();
 					store.saveSettings(settings);
 					store.updateAccountUUID(passvault.getAccounts(), email);
 					flipToYesFreeService(email, password);
@@ -532,7 +554,7 @@ public void setTabPane(TabPane tabPane) {
 		
 		settings.getSync().setLocal(new Gateway[] {local});
 		// go ahead and persist when gateway is entered before showing confirmation
-		((FXCBLStore)passvault.getDatabase()).saveSettings(settings);
+		passvault.getDatabase().saveSettings(settings);
 		
 		Utils.showAlert(AlertType.CONFIRMATION, stage, "Gateway Saved", "Gateway Save", 
 				"The personal gateway settings have been saved and are ready to use");
