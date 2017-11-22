@@ -36,6 +36,7 @@ mkdir ${INSTALL_DIR}/bin
 mkdir ${INSTALL_DIR}/config
 mkdir ${INSTALL_DIR}/lib
 mkdir ${INSTALL_DIR}/logs
+mkdir ${INSTALL_DIR}/data
 
 cp logging.properties ${INSTALL_DIR}/config
 cp passvaultFX.sh ${INSTALL_DIR}/bin

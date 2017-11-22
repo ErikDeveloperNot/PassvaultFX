@@ -271,7 +271,7 @@ public void setTabPane(TabPane tabPane) {
 			
 			if (settings.getGeneral().isSaveKey()) {
 				//String key = ((FXCBLStore)passvault.getDatabase()).getKey();
-				String key = settings.getGeneral().getAccountUUID();
+				String key = passvault.getDatabase().getEncryptionKey();
 				
 				String _key = new String(passvault.getDatabase().encodeBytes(AESEngine.getInstance()
 						.encryptString(passvault.getCOMMON_KEY(), key)));

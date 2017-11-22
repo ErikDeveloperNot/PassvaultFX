@@ -15,7 +15,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="23.0" layoutY="45.0" prefHeight="17.0" prefWidth="188.0" text="Version: 1.00" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="113.0" />
+      <Label layoutX="23.0" layoutY="45.0" prefHeight="17.0" prefWidth="188.0" text="Version: 2.00" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="113.0" />
       <Label layoutX="15.0" layoutY="71.0" text="https://github.com/ErikDeveloperNot/PassvaultFX" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0">
          <font>
             <Font size="10.0" />

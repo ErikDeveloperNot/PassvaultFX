@@ -14,10 +14,10 @@ import com.passvault.util.data.file.model.Database;
 import com.passvault.util.data.file.model.General;
 import com.passvault.util.data.file.model.Generator;
 import com.passvault.util.data.file.model.Settings;
-import com.passvault.util.data.couchbase.CBLStore;
+//import com.passvault.util.data.couchbase.CBLStore;
 import com.passvault.util.model.Gateways;
 
-public class FXCBLStore extends CBLStore {
+public class FXCBLStore { //extends CBLStore {
 	
 	public static String SETTINGS_DTYPE = "settings";
 	private static Logger logger;
@@ -29,7 +29,7 @@ public class FXCBLStore extends CBLStore {
 	public FXCBLStore() {
 		super();
 	}
-
+/*
 	public FXCBLStore(String databaseName, DatabaseFormat dbFormat, String key) {
 		super(databaseName, dbFormat, key);
 	}
@@ -116,5 +116,5 @@ public class FXCBLStore extends CBLStore {
 	public String getKey() {
 		return encryptionKey;
 	}
-	
+*/	
 }

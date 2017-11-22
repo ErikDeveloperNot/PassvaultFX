@@ -57,5 +57,5 @@ fi
 cd $VAULT_DIR
 
 
-${JAVA_EX} $JAVA_OPTS -Djava.util.logging.config.file=${VAULT_DIR}/config/logging.properties -Dcom.passvault.sync.logging=$SYNC_DEBUG -Dcom.passvault.register.server=$REG_SERVER -jar ${VAULT_DIR}/lib/passvaultFX.jar > ${VAULT_DIR}/logs/console.out 2>&1
+${JAVA_EX} $JAVA_OPTS -Djava.util.logging.config.file=${VAULT_DIR}/config/logging.properties -Dcom.passvault.data.file="./data/data.json" -Dcom.passvault.sync.logging=$SYNC_DEBUG -Dcom.passvault.register.server=$REG_SERVER -jar ${VAULT_DIR}/lib/passvaultFX.jar > ${VAULT_DIR}/logs/console.out 2>&1
 

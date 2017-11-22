@@ -11,6 +11,7 @@ MKDIR %INSTALL_DIR%\bin
 MKDIR %INSTALL_DIR%\config
 MKDIR %INSTALL_DIR%\lib
 MKDIR %INSTALL_DIR%\logs
+MKDIR %INSTALL_DIR%\data
 
 COPY logging.properties %INSTALL_DIR%\config
 COPY passvaultFX.bat %INSTALL_DIR%\bin

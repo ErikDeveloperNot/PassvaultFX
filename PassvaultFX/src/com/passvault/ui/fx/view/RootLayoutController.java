@@ -65,8 +65,8 @@ public class RootLayoutController {
 	Menu helpMenu;
 	@FXML
 	MenuItem syncFreeMenuItem;
-	@FXML
-	MenuItem syncPersonalMenuItem;
+	/*@FXML
+	MenuItem syncPersonalMenuItem;*/
 	@FXML
 	MenuItem editMenuItem;
 	@FXML
@@ -117,7 +117,7 @@ public class RootLayoutController {
 		syncButton.setTooltip(new Tooltip("Synchronize with free service"));
 		syncButton.setDisable(true);
 		syncFreeMenuItem.setDisable(true);
-		syncPersonalMenuItem.setDisable(true);
+		//syncPersonalMenuItem.setDisable(true);
 		helpButton.setOnKeyPressed(Utils.getEnterKeyHandler(() -> helpPressed()));
 		helpButton.setTooltip(new Tooltip("Open up help"));
 		editMenuItem.setDisable(true);
@@ -146,7 +146,7 @@ public class RootLayoutController {
 			
 			if (pGateways != null && pGateways.length > 0) {
 				if (pGateways[0] != null && pGateways[0].getServer() != null && !pGateways[0].getServer().equalsIgnoreCase("")) {
-					syncPersonalMenuItem.setDisable(false);
+					//syncPersonalMenuItem.setDisable(false);
 				}
 			}
 		}
@@ -197,7 +197,7 @@ public class RootLayoutController {
 		Gateways gateways = settings.getSync();
 		syncButton.setDisable(true);
 		syncFreeMenuItem.setDisable(true);
-		syncPersonalMenuItem.setDisable(true);
+		//syncPersonalMenuItem.setDisable(true);
 		
 		if (gateways != null) {
 			Gateway gateway = gateways.getRemote();
@@ -213,7 +213,7 @@ public class RootLayoutController {
 			
 			if (pGateways != null && pGateways.length > 0) {
 				if (pGateways[0] != null && pGateways[0].getServer() != null && !pGateways[0].getServer().equalsIgnoreCase("")) {
-					syncPersonalMenuItem.setDisable(false);
+					//syncPersonalMenuItem.setDisable(false);
 				}
 			}
 		}

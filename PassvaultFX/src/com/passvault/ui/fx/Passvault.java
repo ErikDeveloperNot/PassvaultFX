@@ -30,7 +30,7 @@ import com.passvault.util.MRUComparator;
 import com.passvault.util.RandomPasswordGenerator;
 import com.passvault.util.Utils;
 import com.passvault.util.data.Store;
-import com.passvault.util.data.couchbase.CBLStore;
+//import com.passvault.util.data.couchbase.CBLStore;
 
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;

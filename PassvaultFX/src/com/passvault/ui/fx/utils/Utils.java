@@ -16,7 +16,7 @@ import com.passvault.util.Account;
 import com.passvault.util.AccountUUIDResolver;
 import com.passvault.util.MRUComparator;
 import com.passvault.util.sync.AccountsChanged;
-import com.passvault.util.data.couchbase.CBLStore;
+//import com.passvault.util.data.couchbase.CBLStore;
 import com.passvault.util.sync.ReplicationStatus;
 import com.passvault.util.model.Gateway;
 
@@ -231,7 +231,7 @@ public class Utils {
     			Collections.sort(accounts);
 	}
 	
-	
+/*
 	public static Settings getSettings(CBLStore store) {
 		
 		return null;
@@ -241,4 +241,5 @@ public class Utils {
 	public static void saveSettings(CBLStore store, Settings settings) {
 		
 	}
+*/
 }

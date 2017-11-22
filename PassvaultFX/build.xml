@@ -14,7 +14,7 @@
     <pathelement path="classes"/>
   </path>
   
-  <property name="version" value="1.0.0"/>
+  <property name="version" value="2.0.0"/>
   <property name="build.home" value="/Users/user1/Git/passvaultFX/PassvaultFX"/>
   <property name="build.src.dir" value="${build.home}/src"/>
   <property name="build.classes.dir" value="${build.home}/bin"/>
@@ -37,8 +37,8 @@
  
       <fx:resources id="appRes">
         <fx:fileset dir="${build.dist.dir}" includes="passvaultFX.jar"/>
-        <fx:fileset dir="${thirdPartyJars.dir}"/>
-        <fx:fileset dir="${passvaultCoreJar.dir}" includes="Passvault-core.jar,Passvault-androidBase64.jar"/>
+        <fx:fileset dir="${thirdPartyJars.dir}" excludes="couchbase*"/>
+        <fx:fileset dir="${passvaultCoreJar.dir}" includes="Passvault-core.jar,Passvault-androidBase64.jar,Passvault-jsonStore-db.jar"/>
         <fx:fileset dir="${build.classes.dir}"/>
         <fx:fileset dir="${build.home}" includes="resources/*/**"/>
       </fx:resources>
@@ -56,8 +56,8 @@
 
 
       <copy todir="${build.dist.dir}">
-        <fileset dir="${thirdPartyJars.dir}"/>
-        <fileset dir="${passvaultCoreJar.dir}" includes="Passvault-core.jar,Passvault-androidBase64.jar"/>
+        <fileset dir="${thirdPartyJars.dir}" excludes="couchbase*"/>
+        <fileset dir="${passvaultCoreJar.dir}" includes="Passvault-core.jar,Passvault-androidBase64.jar,Passvault-jsonStore-db.jar"/>
         <!--fileset dir="${build.home}" includes="resources/*/**"/-->
       </copy>
  

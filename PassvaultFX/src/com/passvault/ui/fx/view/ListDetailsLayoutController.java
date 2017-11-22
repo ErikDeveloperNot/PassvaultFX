@@ -9,7 +9,7 @@ import com.passvault.ui.fx.utils.Utils;
 import com.passvault.util.Account;
 import com.passvault.util.MRUComparator;
 import com.passvault.util.data.Store;
-import com.passvault.util.data.couchbase.CBLStore;
+//import com.passvault.util.data.couchbase.CBLStore;
 import com.passvault.util.data.file.JsonStore;
 
 import javafx.beans.value.ChangeListener;

@@ -22,7 +22,7 @@
                   <Menu mnemonicParsing="false" text="Synchronize">
                     <items>
                       <MenuItem fx:id="syncFreeMenuItem" mnemonicParsing="false" onAction="#syncPressed" text="Free Service" />
-                        <MenuItem fx:id="syncPersonalMenuItem" mnemonicParsing="false" onAction="#syncPersonlMenuItem" text="Personal Service" />
+                        <!--MenuItem fx:id="syncPersonalMenuItem" mnemonicParsing="false" onAction="#syncPersonlMenuItem" text="Personal Service" /-->
                     </items>
                   </Menu>
                   <MenuItem fx:id="changeKeyMenuItem" mnemonicParsing="false" onAction="#changeKeyPressed" text="Change Key" />
