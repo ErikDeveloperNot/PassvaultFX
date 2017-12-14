@@ -5,7 +5,7 @@ import java.util.TreeSet;
 import java.util.logging.Logger;
 
 import com.passvault.ui.fx.Passvault;
-import com.passvault.util.data.file.model.Settings;
+import com.passvault.data.file.model.Settings;
 import com.passvault.ui.fx.utils.Utils;
 import com.passvault.util.DefaultRandomPasswordGenerator;
 import com.passvault.util.RandomPasswordGenerator;

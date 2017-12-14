@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.passvault.ui.fx.utils.FXCBLStore;
 import com.passvault.util.DefaultRandomPasswordGenerator;
-import com.passvault.util.model.Gateways;
+import com.passvault.model.Gateways;
 
 public class Settings {
 

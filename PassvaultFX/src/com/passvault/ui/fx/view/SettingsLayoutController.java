@@ -6,19 +6,19 @@ import java.util.logging.Logger;
 
 import com.passvault.crypto.AESEngine;
 import com.passvault.ui.fx.Passvault;
-import com.passvault.util.data.Store;
-import com.passvault.util.data.file.JsonStore;
-import com.passvault.util.data.file.model.Generator;
-import com.passvault.util.data.file.model.Properties;
-import com.passvault.util.data.file.model.Settings;
+import com.passvault.data.Store;
+import com.passvault.data.file.JsonStore;
+import com.passvault.data.file.model.Generator;
+import com.passvault.data.file.model.Properties;
+import com.passvault.data.file.model.Settings;
 //import com.passvault.ui.fx.utils.FXCBLStore;
 import com.passvault.ui.fx.utils.GeneralSettingsUpdated;
 import com.passvault.ui.fx.utils.SettingsUpdated;
 import com.passvault.ui.fx.utils.TabChangedHandler;
 import com.passvault.ui.fx.utils.Utils;
 import com.passvault.util.DefaultRandomPasswordGenerator;
-import com.passvault.util.model.Gateway;
-import com.passvault.util.model.Gateways;
+import com.passvault.model.Gateway;
+import com.passvault.model.Gateways;
 import com.passvault.util.register.RegisterAccount;
 import com.passvault.util.register.RegisterAccount.StoreType;
 import com.passvault.util.register.RegisterResponse;
@@ -272,7 +272,7 @@ public void setTabPane(TabPane tabPane) {
 			if (settings.getGeneral().isSaveKey()) {
 				//String key = ((FXCBLStore)passvault.getDatabase()).getKey();
 				String key = passvault.getDatabase().getEncryptionKey();
-				
+
 				String _key = new String(passvault.getDatabase().encodeBytes(AESEngine.getInstance()
 						.encryptString(passvault.getCOMMON_KEY(), key)));
 				settings.getGeneral().setKey(_key);

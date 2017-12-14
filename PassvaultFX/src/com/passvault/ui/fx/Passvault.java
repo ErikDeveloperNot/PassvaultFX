@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import com.passvault.crypto.AESEngine;
-import com.passvault.util.data.file.JsonStore;
-import com.passvault.util.data.file.model.Settings;
+import com.passvault.data.file.JsonStore;
+import com.passvault.data.file.model.Settings;
 import com.passvault.ui.fx.utils.FXCBLStore;
 import com.passvault.ui.fx.utils.SettingsUpdated;
 import com.passvault.ui.fx.utils.TabChangedHandler;
@@ -29,7 +29,7 @@ import com.passvault.util.AccountUUIDResolver;
 import com.passvault.util.MRUComparator;
 import com.passvault.util.RandomPasswordGenerator;
 import com.passvault.util.Utils;
-import com.passvault.util.data.Store;
+import com.passvault.data.Store;
 //import com.passvault.util.data.couchbase.CBLStore;
 
 import javafx.application.Application;
@@ -162,6 +162,7 @@ public class Passvault extends Application {
 	        
 	        //cblStore.setEncryptionKey(key);
 	        store.setEncryptionKey(key);
+	        ((JsonStore)store).checkForUpdate();
 	        
 	        //key = AESEngine.finalizeKey(key, AESEngine.KEY_LENGTH_256);
 	        //cblStore = new FXCBLStore("pass_vault", CBLStore.DatabaseFormat.SQLite, key);

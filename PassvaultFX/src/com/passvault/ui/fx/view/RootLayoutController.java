@@ -5,15 +5,15 @@ import java.util.logging.Logger;
 
 import com.passvault.crypto.AESEngine;
 import com.passvault.ui.fx.Passvault;
-import com.passvault.util.data.Store;
-import com.passvault.util.data.file.model.Settings;
+import com.passvault.data.Store;
+import com.passvault.data.file.model.Settings;
 import com.passvault.ui.fx.utils.AccountDetailsShowing;
 //import com.passvault.ui.fx.utils.FXCBLStore;
 import com.passvault.ui.fx.utils.Utils;
 import com.passvault.util.Account;
 import com.passvault.util.MRUComparator;
-import com.passvault.util.model.Gateway;
-import com.passvault.util.model.Gateways;
+import com.passvault.model.Gateway;
+import com.passvault.model.Gateways;
 
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;

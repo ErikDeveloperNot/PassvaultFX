@@ -11,14 +11,14 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import com.passvault.ui.fx.Passvault;
-import com.passvault.util.data.file.model.Settings;
+import com.passvault.data.file.model.Settings;
 import com.passvault.util.Account;
 import com.passvault.util.AccountUUIDResolver;
 import com.passvault.util.MRUComparator;
 import com.passvault.util.sync.AccountsChanged;
 //import com.passvault.util.data.couchbase.CBLStore;
 import com.passvault.util.sync.ReplicationStatus;
-import com.passvault.util.model.Gateway;
+import com.passvault.model.Gateway;
 
 import javafx.concurrent.Task;
 import javafx.event.EventHandler;

@@ -10,12 +10,12 @@ import com.couchbase.lite.Query;
 import com.couchbase.lite.QueryEnumerator;
 import com.couchbase.lite.QueryRow;
 import com.couchbase.lite.UnsavedRevision;
-import com.passvault.util.data.file.model.Database;
-import com.passvault.util.data.file.model.General;
-import com.passvault.util.data.file.model.Generator;
-import com.passvault.util.data.file.model.Settings;
+import com.passvault.data.file.model.Database;
+import com.passvault.data.file.model.General;
+import com.passvault.data.file.model.Generator;
+import com.passvault.data.file.model.Settings;
 //import com.passvault.util.data.couchbase.CBLStore;
-import com.passvault.util.model.Gateways;
+import com.passvault.model.Gateways;
 
 public class FXCBLStore { //extends CBLStore {
 	

@@ -8,9 +8,9 @@ import com.passvault.ui.fx.utils.AccountDetailsShowing;
 import com.passvault.ui.fx.utils.Utils;
 import com.passvault.util.Account;
 import com.passvault.util.MRUComparator;
-import com.passvault.util.data.Store;
+import com.passvault.data.Store;
 //import com.passvault.util.data.couchbase.CBLStore;
-import com.passvault.util.data.file.JsonStore;
+import com.passvault.data.file.JsonStore;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -413,7 +413,7 @@ MRUComparator.getInstance().saveAccessMap(passvault.getDatabase());
 				setPrefWidth(listView.getWidth() - 20.0);
 				setMaxWidth(listView.getWidth() - 20.0);
 				setText(account.toString());
-//System.out.println(">> Account: " + account + ", isValidEncryptioin: " + account.isValidEncryption());				
+System.out.println(">> Account: " + account + ", isValidEncryptioin: " + account.isValidEncryption());				
 				if (account.isValidEncryption()) {
 					setStyle("-fx-text-fill: black;");// font-weight: regular;");
 					
